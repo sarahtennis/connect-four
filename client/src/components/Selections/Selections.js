@@ -8,7 +8,14 @@ class SelectionButton extends React.Component {
   }
 
   render() {
-    return <button className="selection-button">{this.props.number}</button>;
+    return (
+      <button
+        className="selection-button"
+        onClick={() => this.props.dropChip(Number.parseInt(this.props.number))}
+      >
+        {this.props.number}
+      </button>
+    );
   }
 }
 
@@ -16,7 +23,13 @@ const Selections = props => {
   return (
     <div className="selections">
       {buttons.map(button => {
-        return <SelectionButton key={button} number={button} />;
+        return (
+          <SelectionButton
+            key={button}
+            number={button}
+            dropChip={props.dropChip}
+          />
+        );
       })}
     </div>
   );
