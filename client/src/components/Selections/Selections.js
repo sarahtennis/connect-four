@@ -8,6 +8,7 @@ class SelectionButton extends React.Component {
       <button
         className="selection-button"
         onClick={() => this.props.dropChip(Number.parseInt(this.props.number))}
+        disabled={this.props.disableButtons}
       >
         {this.props.number}
       </button>
@@ -24,6 +25,7 @@ const Selections = props => {
             key={button}
             number={button}
             dropChip={props.dropChip}
+            disableButtons={props.disableButtons}
           />
         );
       })}

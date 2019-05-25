@@ -3,6 +3,7 @@ import "./App.css";
 
 import Board from "./components/Board/Board.js";
 import Selections from "./components/Selections/Selections.js";
+import Win from "./components/Win/Win.js";
 
 const colorToggle = {
   b: "r",
@@ -19,11 +20,27 @@ const initialize = {
     [0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0]
-  ]
+  ],
+  disableButtons: false
 };
 
 class App extends React.Component {
-  state = initialize;
+  constructor() {
+    super();
+    this.state = { ...initialize, win: false };
+  }
+
+  // reset = () => {
+  //   setTimeout(() => {
+  //     this.setState({ ...initialize }, this.setState({ win: false }));
+  //   }, 3000);
+  // };
+
+  closeModal = () => {
+    setTimeout(() => {
+      this.setState({ win: false });
+    }, 3000);
+  };
 
   dropChip = column => {
     const color = this.state.currentColor;
@@ -159,15 +176,19 @@ class App extends React.Component {
 
   win = bool => {
     if (bool) {
-      window.alert("WIN");
+      this.setState({ win: true, disableButtons: true }, this.closeModal());
     }
   };
 
   render() {
     return (
       <div className="App">
-        <Selections dropChip={this.dropChip} />
+        <Selections
+          dropChip={this.dropChip}
+          disableButtons={this.state.disableButtons}
+        />
         <Board board={this.state.board} />
+        {this.state.win ? <Win /> : null}
       </div>
     );
   }
