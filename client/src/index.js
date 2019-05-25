@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import "./components/Square/Square.css";
 import "./components/Board/Board.css";
+import "./components/Selections/Selections.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 

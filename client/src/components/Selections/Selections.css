@@ -1,0 +1,13 @@
+div.selections {
+  width: 700px;
+  height: 100px;
+  margin: 0 auto;
+}
+
+div.selections button.selection-button {
+  height: 100px;
+  width: 100px;
+  background: #ffffff;
+  color: #000000;
+  /* border: none; */
+}
