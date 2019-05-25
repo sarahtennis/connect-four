@@ -4,6 +4,7 @@ import "./App.css";
 import Board from "./components/Board/Board.js";
 import Selections from "./components/Selections/Selections.js";
 import Win from "./components/Win/Win.js";
+import Tie from "./components/Tie/Tie.js";
 
 const colorToggle = {
   b: "r",
@@ -21,13 +22,14 @@ const initialize = {
     [0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0]
   ],
-  disableButtons: false
+  disableButtons: false,
+  chipsDropped: 0
 };
 
 class App extends React.Component {
   constructor() {
     super();
-    this.state = { ...initialize, win: false };
+    this.state = { ...initialize, win: false, tie: false };
   }
 
   // reset = () => {
@@ -36,42 +38,49 @@ class App extends React.Component {
   //   }, 3000);
   // };
 
-  closeModal = () => {
+  closeModal = modal => {
     setTimeout(() => {
-      this.setState({ win: false });
+      this.setState({ [modal]: false });
     }, 3000);
   };
 
   dropChip = column => {
     const color = this.state.currentColor;
+    let currentChips = this.state.chipsDropped;
 
     let newBoard = [...this.state.board];
 
     if (this.state.rowCount[column - 1] !== -1) {
       newBoard[this.state.rowCount[column - 1]][column - 1] = color;
-    }
 
-    let newRowCount = [...this.state.rowCount];
+      let newRowCount = [...this.state.rowCount];
 
-    newRowCount[column - 1] = Math.max(-1, newRowCount[column - 1] - 1);
+      newRowCount[column - 1] = Math.max(-1, newRowCount[column - 1] - 1);
 
-    this.setState(
-      prevState => {
-        return {
+      currentChips += 1;
+
+      this.setState(
+        prevState => ({
           rowCount: newRowCount,
           currentColor: colorToggle[prevState.currentColor],
-          board: newBoard
-        };
-      },
-      this.win(this.verticalWin(column, color)),
-      this.win(this.horizontalWin(this.state.rowCount[column - 1], color)),
-      this.win(
-        this.rightDiagonalWin(column, this.state.rowCount[column - 1], color)
-      ),
-      this.win(
-        this.leftDiagonalWin(column, this.state.rowCount[column - 1], color)
-      )
-    );
+          board: newBoard,
+          chipsDropped: prevState.chipsDropped + 1
+        }),
+        this.win(this.verticalWin(column, color), currentChips),
+        this.win(
+          this.horizontalWin(this.state.rowCount[column - 1], color),
+          currentChips
+        ),
+        this.win(
+          this.rightDiagonalWin(column, this.state.rowCount[column - 1], color),
+          currentChips
+        ),
+        this.win(
+          this.leftDiagonalWin(column, this.state.rowCount[column - 1], color),
+          currentChips
+        )
+      );
+    }
   };
 
   // Checks +slope win
@@ -174,9 +183,19 @@ class App extends React.Component {
     return count >= 4 ? true : false;
   };
 
-  win = bool => {
+  win = (bool, currentChips) => {
     if (bool) {
-      this.setState({ win: true, disableButtons: true }, this.closeModal());
+      this.setState(
+        { win: true, disableButtons: true },
+        this.closeModal("win")
+      );
+    }
+
+    if (currentChips >= 42) {
+      this.setState(
+        { tie: true, disableButtons: true },
+        this.closeModal("tie")
+      );
     }
   };
 
@@ -189,6 +208,7 @@ class App extends React.Component {
         />
         <Board board={this.state.board} />
         {this.state.win ? <Win /> : null}
+        {this.state.tie ? <Tie /> : null}
       </div>
     );
   }

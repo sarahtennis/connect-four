@@ -5,6 +5,7 @@ import "./components/Square/Square.css";
 import "./components/Board/Board.css";
 import "./components/Selections/Selections.css";
 import "./components/Win/Win.css";
+import "./components/Tie/Tie.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
