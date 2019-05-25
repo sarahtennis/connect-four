@@ -4,14 +4,21 @@ import Square from "../Square/Square.js";
 const Board = props => {
   return (
     <div className="board">
-      {props.board.map(row => {
-        return row.map(cell => {
+      {props.board.map((row, rIndex) => {
+        return row.map((cell, cIndex) => {
           if (cell === "b") {
-            return <Square color="black" />;
+            return (
+              <Square
+                key={Number.parseInt(`${rIndex}${cIndex}`)}
+                color="black"
+              />
+            );
           } else if (cell === "r") {
-            return <Square color="red" />;
+            return (
+              <Square key={Number.parseInt(`${rIndex}${cIndex}`)} color="red" />
+            );
           } else {
-            return <Square />;
+            return <Square key={Number.parseInt(`${rIndex}${cIndex}`)} />;
           }
         });
       })}

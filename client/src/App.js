@@ -47,8 +47,82 @@ class App extends React.Component {
         };
       },
       this.win(this.verticalWin(column, color)),
-      this.win(this.horizontalWin(this.state.rowCount[column - 1], color))
+      this.win(this.horizontalWin(this.state.rowCount[column - 1], color)),
+      this.win(
+        this.rightDiagonalWin(column, this.state.rowCount[column - 1], color)
+      ),
+      this.win(
+        this.leftDiagonalWin(column, this.state.rowCount[column - 1], color)
+      )
     );
+  };
+
+  // Checks +slope win
+  rightDiagonalWin = (column, row, color) => {
+    let startRow = row;
+    let startColumn = column - 1;
+
+    while (startRow < 5 && startColumn > 0) {
+      startRow += 1;
+      startColumn -= 1;
+    }
+
+    let count = 0;
+
+    while (startRow >= 0 && startColumn <= 6) {
+      if (this.state.board[startRow][startColumn] === color) {
+        count += 1;
+
+        if (count === 4) {
+          return true;
+        }
+
+        startRow -= 1;
+        startColumn += 1;
+      } else {
+        if (count < 4) {
+          count = 0;
+          startRow -= 1;
+          startColumn += 1;
+        }
+      }
+    }
+
+    return false;
+  };
+
+  // Checks -slope win
+  leftDiagonalWin = (column, row, color) => {
+    let startRow = row;
+    let startColumn = column - 1;
+
+    while (startRow < 5 && startColumn < 6) {
+      startRow += 1;
+      startColumn += 1;
+    }
+
+    let count = 0;
+
+    while (startRow >= 0 && startColumn >= 0) {
+      if (this.state.board[startRow][startColumn] === color) {
+        count += 1;
+
+        if (count === 4) {
+          return true;
+        }
+
+        startRow -= 1;
+        startColumn -= 1;
+      } else {
+        if (count < 4) {
+          count = 0;
+          startRow -= 1;
+          startColumn -= 1;
+        }
+      }
+    }
+
+    return false;
   };
 
   verticalWin = (column, color) => {
@@ -58,7 +132,9 @@ class App extends React.Component {
       if (this.state.board[x][column - 1] === color) {
         count += 1;
       } else {
-        count = 0;
+        if (count < 4) {
+          count = 0;
+        }
       }
     }
 
@@ -69,7 +145,6 @@ class App extends React.Component {
     let count = 0;
 
     for (let x = 0; x < 7; x++) {
-      console.log("loop row value", this.state.board[row][x]);
       if (this.state.board[row][x] === color) {
         count += 1;
       } else {
@@ -78,8 +153,6 @@ class App extends React.Component {
         }
       }
     }
-
-    console.log(count);
 
     return count >= 4 ? true : false;
   };
