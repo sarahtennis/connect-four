@@ -3,10 +3,6 @@ import React from "react";
 const buttons = [1, 2, 3, 4, 5, 6, 7];
 
 class SelectionButton extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <button

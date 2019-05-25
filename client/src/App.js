@@ -26,12 +26,12 @@ class App extends React.Component {
   state = initialize;
 
   dropChip = column => {
+    const color = this.state.currentColor;
+
     let newBoard = [...this.state.board];
 
-    if (this.state.rowCount[column - 1] != -1) {
-      newBoard[this.state.rowCount[column - 1]][
-        column - 1
-      ] = this.state.currentColor;
+    if (this.state.rowCount[column - 1] !== -1) {
+      newBoard[this.state.rowCount[column - 1]][column - 1] = color;
     }
 
     let newRowCount = [...this.state.rowCount];
@@ -44,7 +44,27 @@ class App extends React.Component {
         currentColor: colorToggle[prevState.currentColor],
         board: newBoard
       };
-    });
+    }, this.win(this.verticalWin(column, color)));
+  };
+
+  verticalWin = (column, color) => {
+    let count = 0;
+
+    for (let x = 0; x < 6; x++) {
+      if (this.state.board[x][column - 1] === color) {
+        count += 1;
+      } else {
+        count = 0;
+      }
+    }
+
+    return count >= 4 ? true : false;
+  };
+
+  win = bool => {
+    if (bool) {
+      window.alert("WIN");
+    }
   };
 
   render() {
