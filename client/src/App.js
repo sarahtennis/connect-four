@@ -38,13 +38,17 @@ class App extends React.Component {
 
     newRowCount[column - 1] = Math.max(-1, newRowCount[column - 1] - 1);
 
-    this.setState(prevState => {
-      return {
-        rowCount: newRowCount,
-        currentColor: colorToggle[prevState.currentColor],
-        board: newBoard
-      };
-    }, this.win(this.verticalWin(column, color)));
+    this.setState(
+      prevState => {
+        return {
+          rowCount: newRowCount,
+          currentColor: colorToggle[prevState.currentColor],
+          board: newBoard
+        };
+      },
+      this.win(this.verticalWin(column, color)),
+      this.win(this.horizontalWin(this.state.rowCount[column - 1], color))
+    );
   };
 
   verticalWin = (column, color) => {
@@ -57,6 +61,25 @@ class App extends React.Component {
         count = 0;
       }
     }
+
+    return count >= 4 ? true : false;
+  };
+
+  horizontalWin = (row, color) => {
+    let count = 0;
+
+    for (let x = 0; x < 7; x++) {
+      console.log("loop row value", this.state.board[row][x]);
+      if (this.state.board[row][x] === color) {
+        count += 1;
+      } else {
+        if (count < 4) {
+          count = 0;
+        }
+      }
+    }
+
+    console.log(count);
 
     return count >= 4 ? true : false;
   };
