@@ -60,12 +60,13 @@ class App extends React.Component {
       currentChips += 1;
 
       this.setState(
-        prevState => ({
+        (prevState, props) => ({
           rowCount: newRowCount,
           currentColor: colorToggle[prevState.currentColor],
           board: newBoard,
           chipsDropped: prevState.chipsDropped + 1
         }),
+        console.log(this.state.chipsDropped),
         this.win(this.verticalWin(column, color), currentChips),
         this.win(
           this.horizontalWin(this.state.rowCount[column - 1], color),
