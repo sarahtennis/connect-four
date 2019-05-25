@@ -1,0 +1,23 @@
+div.square {
+  height: 100px;
+  width: 100px;
+  background: #fde04c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div.square div.circle {
+  height: 90px;
+  width: 90px;
+  border-radius: 50%;
+  background: #ffffff;
+}
+
+div.square div.red {
+  background: #ff0000;
+}
+
+div.square div.black {
+  background: #000000;
+}
