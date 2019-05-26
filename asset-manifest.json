@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/connect-four/static/css/main.5d7344f3.chunk.css",
+    "main.js": "/connect-four/static/js/main.e28488b7.chunk.js",
+    "main.js.map": "/connect-four/static/js/main.e28488b7.chunk.js.map",
+    "runtime~main.js": "/connect-four/static/js/runtime~main.000e00dd.js",
+    "runtime~main.js.map": "/connect-four/static/js/runtime~main.000e00dd.js.map",
+    "static/js/2.e7f49323.chunk.js": "/connect-four/static/js/2.e7f49323.chunk.js",
+    "static/js/2.e7f49323.chunk.js.map": "/connect-four/static/js/2.e7f49323.chunk.js.map",
+    "index.html": "/connect-four/index.html",
+    "precache-manifest.10a86b2fc1faac1e1c54a51380572e21.js": "/connect-four/precache-manifest.10a86b2fc1faac1e1c54a51380572e21.js",
+    "service-worker.js": "/connect-four/service-worker.js",
+    "static/css/main.5d7344f3.chunk.css.map": "/connect-four/static/css/main.5d7344f3.chunk.css.map"
+  }
+}
