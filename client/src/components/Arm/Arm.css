@@ -1,0 +1,18 @@
+div.arm {
+  display: inline-block;
+  height: 650px;
+  width: 30px;
+  background: #0d53a8;
+  position: relative;
+}
+
+div.arm div.foot {
+  position: absolute;
+  bottom: -25px;
+  left: -25px;
+  border-bottom: 30px solid #0d53a8;
+  border-left: 25px solid transparent;
+  border-right: 25px solid transparent;
+  height: 0;
+  width: 30px;
+}

@@ -1,5 +1,8 @@
 .App {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
   box-sizing: border-box;
 }
 
