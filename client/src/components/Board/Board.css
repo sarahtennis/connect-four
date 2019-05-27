@@ -13,6 +13,7 @@ div.board-container div.board {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  border: 2px solid #fde04c;
 }
 
 div.board-container div.board div.reset-row {
@@ -41,6 +42,12 @@ div.board-container div.board div.reset-row div.runner div.switch {
   top: -3px;
   left: 2px;
   border-radius: 5px;
+  transition: left 0.1s ease;
+}
+
+div.board-container div.board div.reset-row div.runner div.move-switch {
+  left: 58px;
+  transition: left 0.1s ease;
 }
 
 div.board-container div.board div.reset-row div.runner div.switch:hover {

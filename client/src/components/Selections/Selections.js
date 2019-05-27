@@ -1,17 +1,23 @@
 import React from "react";
+import { Chip } from "../Square/Square.js";
 
 const buttons = [1, 2, 3, 4, 5, 6, 7];
 
 class SelectionButton extends React.Component {
   render() {
     return (
-      <button
-        className="selection-button"
+      <Chip
+        color={this.props.color === "r" ? "red" : "black"}
         onClick={() => this.props.dropChip(Number.parseInt(this.props.number))}
         disabled={this.props.disableButtons}
-      >
-        {this.props.number}
-      </button>
+      />
+      // <button
+      //   className="selection-button"
+      //   onClick={() => this.props.dropChip(Number.parseInt(this.props.number))}
+      //   disabled={this.props.disableButtons}
+      // >
+      //   {this.props.number}
+      // </button>
     );
   }
 }
@@ -24,6 +30,7 @@ const Selections = props => {
           <SelectionButton
             key={button}
             number={button}
+            color={props.color}
             dropChip={props.dropChip}
             disableButtons={props.disableButtons}
           />

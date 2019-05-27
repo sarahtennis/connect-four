@@ -23,20 +23,30 @@ const initialize = {
     [0, 0, 0, 0, 0, 0, 0]
   ],
   disableButtons: false,
-  chipsDropped: 0
+  chipsDropped: 0,
+  win: false,
+  tie: false
 };
 
 class App extends React.Component {
   constructor() {
     super();
-    this.state = { ...initialize, win: false, tie: false };
+    this.state = initialize;
   }
 
-  // reset = () => {
-  //   setTimeout(() => {
-  //     this.setState({ ...initialize }, this.setState({ win: false }));
-  //   }, 3000);
-  // };
+  reset = () => {
+    this.setState({
+      ...initialize,
+      board: [
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0]
+      ]
+    });
+  };
 
   closeModal = modal => {
     setTimeout(() => {
@@ -66,7 +76,6 @@ class App extends React.Component {
           board: newBoard,
           chipsDropped: prevState.chipsDropped + 1
         }),
-        console.log(this.state.chipsDropped),
         this.win(this.verticalWin(column, color), currentChips),
         this.win(
           this.horizontalWin(this.state.rowCount[column - 1], color),
@@ -204,10 +213,11 @@ class App extends React.Component {
     return (
       <div className="App">
         <Selections
+          color={this.state.currentColor}
           dropChip={this.dropChip}
           disableButtons={this.state.disableButtons}
         />
-        <Board board={this.state.board} />
+        <Board board={this.state.board} reset={this.reset} />
         {this.state.win ? <Win /> : null}
         {this.state.tie ? <Tie /> : null}
       </div>
