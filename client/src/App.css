@@ -4,6 +4,8 @@
   align-items: flex-start;
   flex-wrap: wrap;
   box-sizing: border-box;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 .App-logo {
