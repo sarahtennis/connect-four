@@ -4,11 +4,19 @@ import { Chip } from "../Square/Square.js";
 const buttons = [1, 2, 3, 4, 5, 6, 7];
 
 class SelectionButton extends React.Component {
+  componentDidMount() {
+    const chipButtons = document.querySelectorAll("div.selections div.circle");
+    for (let x = 1; x <= buttons.length; x++) {
+      chipButtons[x].onclick = () => {
+        this.props.dropChip(x);
+      };
+    }
+  }
+
   render() {
     return (
       <Chip
         color={this.props.color === "r" ? "red" : "black"}
-        onClick={() => this.props.dropChip(Number.parseInt(this.props.number))}
         disabled={this.props.disableButtons}
       />
       // <button
