@@ -25,7 +25,8 @@ const initialize = {
   disableButtons: false,
   chipsDropped: 0,
   win: false,
-  tie: false
+  tie: false,
+  winner: null
 };
 
 class App extends React.Component {
@@ -76,18 +77,21 @@ class App extends React.Component {
           board: newBoard,
           chipsDropped: prevState.chipsDropped + 1
         }),
-        this.win(this.verticalWin(column, color), currentChips),
+        this.win(this.verticalWin(column, color), currentChips, color),
         this.win(
           this.horizontalWin(this.state.rowCount[column - 1], color),
-          currentChips
+          currentChips,
+          color
         ),
         this.win(
           this.rightDiagonalWin(column, this.state.rowCount[column - 1], color),
-          currentChips
+          currentChips,
+          color
         ),
         this.win(
           this.leftDiagonalWin(column, this.state.rowCount[column - 1], color),
-          currentChips
+          currentChips,
+          color
         )
       );
     }
@@ -193,10 +197,10 @@ class App extends React.Component {
     return count >= 4 ? true : false;
   };
 
-  win = (bool, currentChips) => {
+  win = (bool, currentChips, color) => {
     if (bool) {
       this.setState(
-        { win: true, disableButtons: true },
+        { win: true, disableButtons: true, winner: color },
         this.closeModal("win")
       );
     }
@@ -218,8 +222,8 @@ class App extends React.Component {
           disableButtons={this.state.disableButtons}
         />
         <Board board={this.state.board} reset={this.reset} />
-        {this.state.win ? <Win /> : null}
-        {this.state.tie ? <Tie /> : null}
+        <Win winner={this.state.winner} winDisplay={this.state.win} />
+        <Tie tieDisplay={this.state.tie} />
       </div>
     );
   }
