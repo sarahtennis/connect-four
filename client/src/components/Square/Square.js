@@ -2,7 +2,11 @@ import React from "react";
 
 const Chip = props => {
   return (
-    <div className={`circle ${props.color}`}>
+    <div
+      className={`circle ${props.color} ${
+        props.disableButtons ? "disable" : ""
+      }`}
+    >
       <div className={`inner-circle ${props.color}`}>
         <div className={`ridge ${props.color}`}>
           <div className={`inner-ridge ${props.color}`} />

@@ -1,13 +1,15 @@
 div.board-container {
+  width: 764px;
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  flex-wrap: wrap;
   /* margin-top: 6px; */
 }
 
 div.board-container div.board {
   height: 600px;
-  width: 700px;
+  width: 704px;
   margin: 0 auto;
   display: inline-flex;
   justify-content: center;
@@ -16,9 +18,9 @@ div.board-container div.board {
   border: 2px solid #fde04c;
 }
 
-div.board-container div.board div.reset-row {
-  /* border: 4px solid #fde04c; */
-  width: 700px;
+div.board-container div.reset-row {
+  /* border: 2px solid #fde04c; */
+  width: 704px;
   height: 30px;
   background: #fde04c;
   display: flex;
@@ -26,7 +28,7 @@ div.board-container div.board div.reset-row {
   align-items: center;
 }
 
-div.board-container div.board div.reset-row div.runner {
+div.board-container div.reset-row div.runner {
   height: 5px;
   width: 100px;
   background: black;
@@ -34,7 +36,7 @@ div.board-container div.board div.reset-row div.runner {
   position: absolute;
 }
 
-div.board-container div.board div.reset-row div.runner div.switch {
+div.board-container div.reset-row div.runner div.switch {
   height: 11px;
   width: 40px;
   background: #0d53a8;
@@ -46,11 +48,11 @@ div.board-container div.board div.reset-row div.runner div.switch {
   transition: left 0.1s ease;
 }
 
-div.board-container div.board div.reset-row div.runner div.move-switch {
+div.board-container div.reset-row div.runner div.move-switch {
   left: 58px;
   transition: left 0.1s ease;
 }
 
-div.board-container div.board div.reset-row div.runner div.switch:hover {
+div.board-container div.reset-row div.runner div.switch:hover {
   cursor: pointer;
 }

@@ -7,6 +7,7 @@ div.arm {
 }
 
 div.arm div.foot {
+  box-sizing: content-box;
   position: absolute;
   bottom: -25px;
   left: -25px;

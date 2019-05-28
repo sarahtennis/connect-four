@@ -7,7 +7,7 @@ class SelectionButton extends React.Component {
   componentDidMount() {
     const chipButtons = document.querySelectorAll("div.selections div.circle");
     for (let x = 1; x <= buttons.length; x++) {
-      chipButtons[x].onclick = () => {
+      chipButtons[x - 1].onclick = () => {
         this.props.dropChip(x);
       };
     }
@@ -17,7 +17,7 @@ class SelectionButton extends React.Component {
     return (
       <Chip
         color={this.props.color === "r" ? "red" : "black"}
-        disabled={this.props.disableButtons}
+        disableButtons={this.props.disableButtons}
       />
       // <button
       //   className="selection-button"
