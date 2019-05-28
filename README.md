@@ -2,7 +2,7 @@
 
 Web based clone of the game Connect Four built with React.
 
-- Deployed: http://www.sarahtennis.com/connect-four/
+- Deployed: https://www.sarahtennis.com/connect-four/
 - Rules
   1. Decide who will play first (black always goes first).
   2. On your turn, click above any column to "drop" a chip to the lowest unoccupied position in that column.
@@ -22,4 +22,4 @@ Then run the following script.
 yarn start
 ```
 
-The project can be viewed in the browser at `http://localhost:3000/`, unless that port is already in use (in which case, check the terminal for the correct port).
+The project can be viewed in the browser at `https://localhost:3000/`, unless that port is already in use (in which case, check the terminal for the correct port).
