@@ -1,6 +1,6 @@
 # Connect Four
 
-Web based clone of the game Connect Four built with React.
+Web based clone of the game Connect Four built with React for desktop.
 
 - Deployed: https://www.sarahtennis.com/connect-four/
 - Rules
