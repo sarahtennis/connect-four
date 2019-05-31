@@ -2,6 +2,9 @@ div.selections {
   width: 700px;
   height: 100px;
   margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 div.selections button.selection-button {
@@ -10,4 +13,17 @@ div.selections button.selection-button {
   background: #ffffff;
   color: #000000;
   /* border: none; */
+}
+
+div.selections div.circle {
+  opacity: 0;
+}
+
+div.selections div.disable {
+  pointer-events: none;
+}
+
+div.selections div.circle:hover {
+  opacity: 1;
+  cursor: pointer;
 }

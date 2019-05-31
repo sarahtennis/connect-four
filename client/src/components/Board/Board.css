@@ -1,9 +1,58 @@
-div.board {
-  height: 600px;
-  width: 700px;
-  margin: 0 auto;
+div.board-container {
+  width: 764px;
   display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  /* margin-top: 6px; */
+}
+
+div.board-container div.board {
+  height: 600px;
+  width: 704px;
+  margin: 0 auto;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  border: 2px solid #fde04c;
+}
+
+div.board-container div.reset-row {
+  /* border: 2px solid #fde04c; */
+  width: 704px;
+  height: 30px;
+  background: #fde04c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div.board-container div.reset-row div.runner {
+  height: 5px;
+  width: 100px;
+  background: black;
+  border-radius: 5px;
+  position: absolute;
+}
+
+div.board-container div.reset-row div.runner div.switch {
+  height: 11px;
+  width: 40px;
+  background: #0d53a8;
+  margin-bottom: 10px;
+  position: relative;
+  top: -3px;
+  left: 2px;
+  border-radius: 5px;
+  transition: left 0.1s ease;
+}
+
+div.board-container div.reset-row div.runner div.move-switch {
+  left: 58px;
+  transition: left 0.1s ease;
+}
+
+div.board-container div.reset-row div.runner div.switch:hover {
+  cursor: pointer;
 }

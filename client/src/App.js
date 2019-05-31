@@ -23,20 +23,31 @@ const initialize = {
     [0, 0, 0, 0, 0, 0, 0]
   ],
   disableButtons: false,
-  chipsDropped: 0
+  chipsDropped: 0,
+  win: false,
+  tie: false,
+  winner: null
 };
 
 class App extends React.Component {
   constructor() {
     super();
-    this.state = { ...initialize, win: false, tie: false };
+    this.state = initialize;
   }
 
-  // reset = () => {
-  //   setTimeout(() => {
-  //     this.setState({ ...initialize }, this.setState({ win: false }));
-  //   }, 3000);
-  // };
+  reset = () => {
+    this.setState({
+      ...initialize,
+      board: [
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0]
+      ]
+    });
+  };
 
   closeModal = modal => {
     setTimeout(() => {
@@ -66,19 +77,21 @@ class App extends React.Component {
           board: newBoard,
           chipsDropped: prevState.chipsDropped + 1
         }),
-        console.log(this.state.chipsDropped),
-        this.win(this.verticalWin(column, color), currentChips),
+        this.win(this.verticalWin(column, color), currentChips, color),
         this.win(
           this.horizontalWin(this.state.rowCount[column - 1], color),
-          currentChips
+          currentChips,
+          color
         ),
         this.win(
           this.rightDiagonalWin(column, this.state.rowCount[column - 1], color),
-          currentChips
+          currentChips,
+          color
         ),
         this.win(
           this.leftDiagonalWin(column, this.state.rowCount[column - 1], color),
-          currentChips
+          currentChips,
+          color
         )
       );
     }
@@ -184,10 +197,10 @@ class App extends React.Component {
     return count >= 4 ? true : false;
   };
 
-  win = (bool, currentChips) => {
+  win = (bool, currentChips, color) => {
     if (bool) {
       this.setState(
-        { win: true, disableButtons: true },
+        { win: true, disableButtons: true, winner: color },
         this.closeModal("win")
       );
     }
@@ -204,12 +217,13 @@ class App extends React.Component {
     return (
       <div className="App">
         <Selections
+          color={this.state.currentColor}
           dropChip={this.dropChip}
           disableButtons={this.state.disableButtons}
         />
-        <Board board={this.state.board} />
-        {this.state.win ? <Win /> : null}
-        {this.state.tie ? <Tie /> : null}
+        <Board board={this.state.board} reset={this.reset} />
+        <Win winner={this.state.winner} winDisplay={this.state.win} />
+        <Tie tieDisplay={this.state.tie} />
       </div>
     );
   }
