@@ -1,13 +1,13 @@
 import React from "react";
 import { Chip } from "../Square/Square.js";
 
-const buttons = [1, 2, 3, 4, 5, 6, 7];
+const buttons = [0, 1, 2, 3, 4, 5, 6];
 
 class SelectionButton extends React.Component {
   componentDidMount() {
     const chipButtons = document.querySelectorAll("div.selections div.circle");
-    for (let x = 1; x <= buttons.length; x++) {
-      chipButtons[x - 1].onclick = () => {
+    for (let x = 0; x <= buttons.length; x++) {
+      chipButtons[x].onclick = () => {
         this.props.dropChip(x);
       };
     }
