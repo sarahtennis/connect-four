@@ -6,7 +6,7 @@ const buttons = [0, 1, 2, 3, 4, 5, 6];
 class SelectionButton extends React.Component {
   componentDidMount() {
     const chipButtons = document.querySelectorAll("div.selections div.circle");
-    for (let x = 0; x <= buttons.length; x++) {
+    for (let x = 0; x < buttons.length; x++) {
       chipButtons[x].onclick = () => {
         this.props.dropChip(x);
       };

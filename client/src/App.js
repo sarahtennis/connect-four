@@ -61,12 +61,12 @@ class App extends React.Component {
 
     let newBoard = [...this.state.board];
 
-    if (this.state.rowCount[column - 1] !== -1) {
-      newBoard[this.state.rowCount[column - 1]][column - 1] = color;
+    if (this.state.rowCount[column] !== -1) {
+      newBoard[this.state.rowCount[column]][column] = color;
 
       let newRowCount = [...this.state.rowCount];
 
-      newRowCount[column - 1] = Math.max(-1, newRowCount[column - 1] - 1);
+      newRowCount[column] = Math.max(-1, newRowCount[column] - 1);
 
       currentChips += 1;
 
@@ -79,17 +79,17 @@ class App extends React.Component {
         }),
         this.win(this.verticalWin(column, color), currentChips, color),
         this.win(
-          this.horizontalWin(this.state.rowCount[column - 1], color),
+          this.horizontalWin(this.state.rowCount[column], color),
           currentChips,
           color
         ),
         this.win(
-          this.rightDiagonalWin(column, this.state.rowCount[column - 1], color),
+          this.rightDiagonalWin(column, this.state.rowCount[column], color),
           currentChips,
           color
         ),
         this.win(
-          this.leftDiagonalWin(column, this.state.rowCount[column - 1], color),
+          this.leftDiagonalWin(column, this.state.rowCount[column], color),
           currentChips,
           color
         )
@@ -100,7 +100,7 @@ class App extends React.Component {
   // Checks +slope win
   rightDiagonalWin = (column, row, color) => {
     let startRow = row;
-    let startColumn = column - 1;
+    let startColumn = column;
 
     while (startRow < 5 && startColumn > 0) {
       startRow += 1;
@@ -134,7 +134,7 @@ class App extends React.Component {
   // Checks -slope win
   leftDiagonalWin = (column, row, color) => {
     let startRow = row;
-    let startColumn = column - 1;
+    let startColumn = column;
 
     while (startRow < 5 && startColumn < 6) {
       startRow += 1;
@@ -169,7 +169,7 @@ class App extends React.Component {
     let count = 0;
 
     for (let x = 0; x < 6; x++) {
-      if (this.state.board[x][column - 1] === color) {
+      if (this.state.board[x][column] === color) {
         count += 1;
       } else {
         if (count < 4) {
